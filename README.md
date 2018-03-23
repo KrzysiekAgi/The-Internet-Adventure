@@ -9,3 +9,5 @@ Gra mobilna stworzona w ramach kursu Projekt Zespołowy na Politechnice Wrocław
 * Tomasza Szewczuka
 
 Gra opowiada historię n00b'a, który chce zostać prawdziwym mem masterem i tworzyć dank memy
+
+-commit "Krzysztof Sobociński"
