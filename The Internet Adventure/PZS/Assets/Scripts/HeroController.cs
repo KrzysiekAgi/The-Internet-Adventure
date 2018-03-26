@@ -8,6 +8,8 @@ public class HeroController : MonoBehaviour {
     Rigidbody2D rbody;
     public float hspeed;
     public float jumpForce;
+    private bool canJump;
+    private bool grounded;
 
     // Use this for initialization
     void Start () {
@@ -16,12 +18,12 @@ public class HeroController : MonoBehaviour {
         rbody = GetComponent<Rigidbody2D>();
 
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
 
-        float horizontalDir = Input.GetAxis ("Horizontal");
-        anim.SetFloat("horizontalDir", Mathf.Abs( horizontalDir));
+    // Update is called once per frame
+    void FixedUpdate() {
+
+        float horizontalDir = Input.GetAxis("Horizontal");
+        anim.SetFloat("horizontalDir", Mathf.Abs(horizontalDir));
 
         rbody.velocity = new Vector2(horizontalDir * hspeed, rbody.velocity.y);
 
@@ -29,16 +31,31 @@ public class HeroController : MonoBehaviour {
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
-        if(horizontalDir > 0)
+        if (horizontalDir > 0)
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+
+        if(canJump)
         {
             anim.SetTrigger("jump");
-            rbody.AddForce(new Vector2(0f, jumpForce));
+            canJump = false;
+            rbody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
 
-	}
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Space) && rbody.velocity.y < Mathf.Abs(0f))
+        {
+            canJump = true;
+        }
+
+    }
+
+
 }
+
+

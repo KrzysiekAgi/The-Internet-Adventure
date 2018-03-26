@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hspeed: 3.5
-  jumpForce: 300
+  jumpForce: 8
 --- !u!50 &290145844
 Rigidbody2D:
   serializedVersion: 4
@@ -1362,7 +1362,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4196822221251286, guid: 0434fb56a3a90ab4db5cbf7a89def1cc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.95
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4196822221251286, guid: 0434fb56a3a90ab4db5cbf7a89def1cc, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1406,7 +1406,7 @@ Prefab:
     - target: {fileID: 212316528906731768, guid: 0434fb56a3a90ab4db5cbf7a89def1cc,
         type: 2}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 212297371665160104, guid: 0434fb56a3a90ab4db5cbf7a89def1cc,
         type: 2}
@@ -1416,7 +1416,7 @@ Prefab:
     - target: {fileID: 212297371665160104, guid: 0434fb56a3a90ab4db5cbf7a89def1cc,
         type: 2}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 212257298777335150, guid: 0434fb56a3a90ab4db5cbf7a89def1cc,
         type: 2}
@@ -1426,7 +1426,7 @@ Prefab:
     - target: {fileID: 212257298777335150, guid: 0434fb56a3a90ab4db5cbf7a89def1cc,
         type: 2}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
