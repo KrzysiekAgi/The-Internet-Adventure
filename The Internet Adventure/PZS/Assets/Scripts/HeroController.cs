@@ -53,7 +53,7 @@ public class HeroController : MonoBehaviour {
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 2)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 1) //jumpCounter < 2 powodowało triple jumpa
         {
             Jump = true;
             jumpCounter++;
