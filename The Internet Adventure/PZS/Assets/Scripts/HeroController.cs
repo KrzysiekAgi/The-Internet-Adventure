@@ -8,9 +8,9 @@ public class HeroController : MonoBehaviour {
     Rigidbody2D rbody;
     public float hspeed;
     public float jumpForce;
-    private bool canJump;
+    public int jumpCounter { get; set; }
     private bool Jump;
-    public  bool grounded;
+    public  bool grounded { get; set; }
 
 
     // Use this for initialization
@@ -44,7 +44,8 @@ public class HeroController : MonoBehaviour {
         {
             anim.SetTrigger("jump");
             Jump = false;
-            rbody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
+            //rbody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
 
 
@@ -52,33 +53,18 @@ public class HeroController : MonoBehaviour {
     
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space) && grounded)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 2)
         {
             Jump = true;
+            jumpCounter++;
         }
+
+        
 
     }
     
 
-    // Kiedy dotykach platformy, możesz skakać i jesteś uziemiony
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(collision.tag == "Platform")
-        {
-            grounded = true;
-            canJump = true;
-        }
-    }
 
-    // Kiedy jesteś w powietrzu, nie możesz skakać;
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.tag == "Platform")
-        {
-            grounded = false;
-            canJump = false;
-        }
-    }
 
 }
 
