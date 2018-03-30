@@ -4,18 +4,28 @@ using UnityEngine;
 
 public class GroundGenerator : MonoBehaviour {
 
-    public GameObject groundPrefab;
+    public GameObject[] groundPrefabs;
+    public float maxStep;
+    float PreviousGroundY = -3.44f;
+    float newX;
 
-
-	// Use this for initialization
-	void Start () {
-        InvokeRepeating("GenerateNewGround", 0, 1.8f);
+    // Use this for initialization
+    void Start () {
+        InvokeRepeating("GenerateNewGround", 0.9f, 2);
 	}
 	
 	void GenerateNewGround () {
 
-        Vector3 targetPrefabPosition = new Vector3(Random.Range(-6.5f, 4.5f), this.transform.position.y, this.transform.position.z);
-        
-        Instantiate(groundPrefab, targetPrefabPosition, Quaternion.identity);
+        do
+        {
+
+            newX = Random.Range(-6.5f, 4.5f);
+
+        } while (newX > maxStep + PreviousGroundY && newX < 2 * maxStep + PreviousGroundY);
+
+        Vector3 targetPrefabPosition = new Vector3(newX, this.transform.position.y, this.transform.position.z);
+        PreviousGroundY = targetPrefabPosition.x;
+
+        Instantiate(groundPrefabs[Random.Range(0, groundPrefabs.Length)], targetPrefabPosition, Quaternion.identity);
 	}
 }
