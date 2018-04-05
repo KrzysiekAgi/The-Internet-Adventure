@@ -12,3 +12,5 @@
 **GroundGenerator** - generates new platforms
 
 **HeroController** - allows Hero to move and jump, provides animation
+
+**Timer** - counts the time of the game and saves the record
