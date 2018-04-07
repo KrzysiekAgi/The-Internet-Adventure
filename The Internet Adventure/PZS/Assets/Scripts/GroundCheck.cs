@@ -4,19 +4,6 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour {
 
-    
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-
 
     // Kiedy dotykach platformy, możesz skakać i jesteś uziemiony
     private void OnTriggerStay2D(Collider2D collision)

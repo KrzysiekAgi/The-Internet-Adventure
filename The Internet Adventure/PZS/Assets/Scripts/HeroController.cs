@@ -11,6 +11,7 @@ public class HeroController : MonoBehaviour {
     public int jumpCounter { get; set; }
     private bool Jump;
     public  bool grounded { get; set; }
+    public bool canStick;
 
 
     // Use this for initialization
@@ -19,6 +20,7 @@ public class HeroController : MonoBehaviour {
         anim = GetComponent<Animator> ();
         rbody = GetComponent<Rigidbody2D>();
         Jump = false;
+        canStick = true;
 
     }
 
@@ -55,15 +57,20 @@ public class HeroController : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 2)
         {
+            GetComponent<Rigidbody2D>().isKinematic = false;
             Jump = true;
             jumpCounter++;
+            StartCoroutine(Stick());
         }
 
-        
-
     }
-    
 
+    IEnumerator Stick()
+    {
+        canStick = false;
+        yield return new WaitForSeconds(0.3F);
+        canStick = true;
+    }
 
 
 }
