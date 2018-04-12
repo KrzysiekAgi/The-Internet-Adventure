@@ -12,6 +12,8 @@ public class HeroController : MonoBehaviour {
     private bool Jump;
     public  bool grounded { get; set; }
     public bool canStick;
+    public Vector2 onDownPosition;
+    public Vector2 deltaPosition;
 
 
     // Use this for initialization
@@ -30,13 +32,15 @@ public class HeroController : MonoBehaviour {
         float horizontalDir = Input.GetAxis("Horizontal");
         anim.SetFloat("horizontalDir", Mathf.Abs(horizontalDir));
 
-        rbody.velocity = new Vector2(horizontalDir * hspeed, rbody.velocity.y);
+       
+       // rbody.velocity = new Vector2(horizontalDir * hspeed, rbody.velocity.y);
+ 
 
-        if (horizontalDir < 0)
+        if (rbody.velocity.x < 0)
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
-        if (horizontalDir > 0)
+        if (rbody.velocity.x > 0)
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
@@ -46,7 +50,13 @@ public class HeroController : MonoBehaviour {
         {
             anim.SetTrigger("jump");
             Jump = false;
-            rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
+            if (deltaPosition.x > 5)
+                deltaPosition.x = 5;
+            if (deltaPosition.y > 10)
+                deltaPosition.y = 10;
+
+            rbody.velocity = deltaPosition;
+            //rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
             //rbody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
 
@@ -55,14 +65,35 @@ public class HeroController : MonoBehaviour {
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 2)
+ /*       if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 2)
         {
             GetComponent<Rigidbody2D>().isKinematic = false;
             Jump = true;
             jumpCounter++;
             StartCoroutine(Stick());
         }
+*/
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            onDownPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            float x = 0;
+            float y = 0;
+            x = (Input.mousePosition.x - onDownPosition.x) / 20;
+            y = (Input.mousePosition.y - onDownPosition.y) / 10;
+
+            if (x > 5) x = 5;
+            if (x < -5) x = -5;
+            if (y > 10) y = 10;
+            if (y < -10) y = -10;
+
+            deltaPosition = new Vector2(x, y);
+            Jump = true;
+        }
     }
 
     IEnumerator Stick()
