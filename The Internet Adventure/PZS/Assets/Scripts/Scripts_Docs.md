@@ -14,3 +14,5 @@
 **HeroController** - allows Hero to move and jump, provides animation
 
 **Timer** - counts the time of the game and saves the record
+
+**ObstacleCheck** - detects collisions with obstacles like spikes etc. Tests only from above. Needs "Obstacle" tag. IEnumerator Wait doesn't work.

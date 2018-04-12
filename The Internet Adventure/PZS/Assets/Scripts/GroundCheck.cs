@@ -5,7 +5,7 @@ using UnityEngine;
 public class GroundCheck : MonoBehaviour {
 
 
-    // Kiedy dotykach platformy, możesz skakać i jesteś uziemiony
+    // Kiedy dotykasz platformy, możesz skakać i jesteś uziemiony
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Platform")
