@@ -9,21 +9,27 @@ public class ObstacleCheck : MonoBehaviour {
  
 
     // Gdy dotykasz przeszkody
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.tag == "Obstacle")
+        if(other.gameObject.name == "Hero")
+        {
+            other.gameObject.GetComponent<Animator>().SetTrigger("fail");
+        }
+
+
+      /*  if (collision.tag == "Obstacle")
         {
             //Destroy();
             Wait(30); // Doesn't work; why??
             SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
-        }
+        }*/
     }
 
-    IEnumerator Wait(float seconds)
+   /* IEnumerator Wait(float seconds)
     {
         Debug.Log("asd\n");
         yield return new WaitForSeconds(seconds);
         Debug.Log("qwe\n");
-    }
+    }*/
 
 }

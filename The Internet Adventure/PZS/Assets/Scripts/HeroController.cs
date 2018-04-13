@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HeroController : MonoBehaviour {
 
@@ -32,6 +33,11 @@ public class HeroController : MonoBehaviour {
         float horizontalDir = Input.GetAxis("Horizontal");
         anim.SetFloat("horizontalDir", Mathf.Abs(horizontalDir));
 
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("obstacleContact"))
+        {
+            rbody.velocity = Vector2.zero;
+            return;
+        }
        
        // rbody.velocity = new Vector2(horizontalDir * hspeed, rbody.velocity.y);
  
@@ -103,6 +109,11 @@ public class HeroController : MonoBehaviour {
         canStick = true;
     }
 
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
+    }
 
 }
 
