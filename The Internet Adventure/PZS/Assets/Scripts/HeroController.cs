@@ -16,6 +16,8 @@ public class HeroController : MonoBehaviour {
     public Vector2 onDownPosition;
     public Vector2 deltaPosition;
 
+    Touch fingerOne;
+
 
     // Use this for initialization
     void Start () {
@@ -24,6 +26,8 @@ public class HeroController : MonoBehaviour {
         rbody = GetComponent<Rigidbody2D>();
         Jump = false;
         canStick = true;
+        
+        
 
     }
 
@@ -71,14 +75,15 @@ public class HeroController : MonoBehaviour {
     
     private void Update()
     {
- /*       if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 2)
-        {
-            GetComponent<Rigidbody2D>().isKinematic = false;
-            Jump = true;
-            jumpCounter++;
-            StartCoroutine(Stick());
-        }
-*/
+        /*       if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 2)
+               {
+                   GetComponent<Rigidbody2D>().isKinematic = false;
+                   Jump = true;
+                   jumpCounter++;
+                   StartCoroutine(Stick());
+               }
+       */
+        fingerOne = Input.GetTouch(0);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -95,10 +100,26 @@ public class HeroController : MonoBehaviour {
             if (x > 5) x = 5;
             if (x < -5) x = -5;
             if (y > 10) y = 10;
+            if (y < -10) y = -10;            
+
+            deltaPosition = new Vector2(x, y);
+            Jump = true;
+        }
+
+        if(fingerOne.phase == TouchPhase.Ended)
+        {
+            float x = 0, y = 0;
+            x = fingerOne.deltaPosition.x;
+            y = fingerOne.deltaPosition.y;
+
+            if (x > 5) x = 5;
+            if (x < -5) x = -5;
+            if (y > 10) y = 10;
             if (y < -10) y = -10;
 
             deltaPosition = new Vector2(x, y);
             Jump = true;
+
         }
     }
 
