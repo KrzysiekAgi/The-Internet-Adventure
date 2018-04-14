@@ -16,20 +16,8 @@ public class ObstacleCheck : MonoBehaviour {
             other.gameObject.GetComponent<Animator>().SetTrigger("fail");
         }
 
-
-      /*  if (collision.tag == "Obstacle")
-        {
-            //Destroy();
-            Wait(30); // Doesn't work; why??
-            SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
-        }*/
     }
 
-   /* IEnumerator Wait(float seconds)
-    {
-        Debug.Log("asd\n");
-        yield return new WaitForSeconds(seconds);
-        Debug.Log("qwe\n");
-    }*/
+
 
 }
