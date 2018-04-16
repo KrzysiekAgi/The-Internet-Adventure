@@ -11,10 +11,16 @@ public class HeroController : MonoBehaviour {
     public float jumpForce;
     public int jumpCounter { get; set; }
     private bool Jump;
+    private bool started;
     public  bool grounded { get; set; }
     public bool canStick;
     public Vector2 onDownPosition;
     public Vector2 deltaPosition;
+
+    public bool ifStarted()
+    {
+        return started;
+    }
 
 
     // Use this for initialization
@@ -24,7 +30,8 @@ public class HeroController : MonoBehaviour {
         rbody = GetComponent<Rigidbody2D>();
         Jump = false;
         canStick = true;
-
+        started = false;
+        Camera_controler.setHeroController(this);
     }
 
     // Update is called once per frame
@@ -56,6 +63,7 @@ public class HeroController : MonoBehaviour {
         {
             anim.SetTrigger("jump");
             Jump = false;
+            started = true;
             if (deltaPosition.x > 5)
                 deltaPosition.x = 5;
             if (deltaPosition.y > 10)
