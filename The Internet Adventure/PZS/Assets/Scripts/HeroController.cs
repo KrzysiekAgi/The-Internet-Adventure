@@ -38,9 +38,9 @@ public class HeroController : MonoBehaviour {
             rbody.velocity = Vector2.zero;
             return;
         }
-       
-       // rbody.velocity = new Vector2(horizontalDir * hspeed, rbody.velocity.y);
- 
+
+        //rbody.velocity = new Vector2(horizontalDir * hspeed, rbody.velocity.y);
+
 
         if (rbody.velocity.x < 0)
         {
@@ -52,7 +52,7 @@ public class HeroController : MonoBehaviour {
         }
 
 
-        if(Jump)
+        if (Jump)
         {
             anim.SetTrigger("jump");
             Jump = false;
@@ -62,7 +62,11 @@ public class HeroController : MonoBehaviour {
                 deltaPosition.y = 10;
 
             rbody.velocity = deltaPosition;
+
+
             //rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
+
+
             //rbody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
 
