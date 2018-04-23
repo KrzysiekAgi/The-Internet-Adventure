@@ -23,6 +23,6 @@ public class CounterController : MonoBehaviour
     public void ResetCounter()
     {
         numberOfCoin = 0;
-        counterView.text = numberOfCoin.ToString();
+        //counterView.text = numberOfCoin.ToString();
     }
 }
