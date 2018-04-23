@@ -46,17 +46,20 @@ public class HeroController : MonoBehaviour {
             return;
         }
 
-        //rbody.velocity = new Vector2(horizontalDir * hspeed, rbody.velocity.y);
+        rbody.velocity = new Vector2(horizontalDir * hspeed, rbody.velocity.y);
 
 
-        if (rbody.velocity.x < 0)
+        /*if (rbody.velocity.x < 0)
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         if (rbody.velocity.x > 0)
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
-        }
+        }*/
+
+        if (rbody.velocity.x < 0) transform.localScale = new Vector3(-1f, 1f, 1f);
+        if (horizontalDir > 0) transform.localScale = new Vector3(1f, 1f, 1f);
 
 
         if (Jump)
@@ -64,15 +67,15 @@ public class HeroController : MonoBehaviour {
             anim.SetTrigger("jump");
             Jump = false;
             started = true;
-            if (deltaPosition.x > 5)
-                deltaPosition.x = 5;
-            if (deltaPosition.y > 10)
-                deltaPosition.y = 10;
+            //if (deltaPosition.x > 5)
+            //    deltaPosition.x = 5;
+            //if (deltaPosition.y > 10)
+            //    deltaPosition.y = 10;
 
-            rbody.velocity = deltaPosition;
+            //rbody.velocity = deltaPosition;
 
 
-            //rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
+            rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
 
 
             //rbody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
@@ -83,14 +86,14 @@ public class HeroController : MonoBehaviour {
     
     private void Update()
     {
- /*       if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 2)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 1)
         {
             GetComponent<Rigidbody2D>().isKinematic = false;
             Jump = true;
             jumpCounter++;
             StartCoroutine(Stick());
         }
-*/
+
 
         if (Input.GetMouseButtonDown(0))
         {
