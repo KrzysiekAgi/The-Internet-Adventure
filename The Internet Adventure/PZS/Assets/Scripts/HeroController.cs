@@ -16,6 +16,8 @@ public class HeroController : MonoBehaviour {
     public bool canStick;
     public Vector2 onDownPosition;
     public Vector2 deltaPosition;
+   /* private GameObject WinMenu;
+    private GameObject CanvasWin;*/
 
     public bool ifStarted()
     {
@@ -25,7 +27,11 @@ public class HeroController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+       /* CanvasWin =  GameObject.Find("CanvasWin");
+        if(CanvasWin != null)
+        {
+            WinMenu = CanvasWin.transform.GetChild(0).gameObject;
+        }*/
         anim = GetComponent<Animator> ();
         rbody = GetComponent<Rigidbody2D>();
         Jump = false;
@@ -126,7 +132,14 @@ public class HeroController : MonoBehaviour {
     {
         SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
     }
-
+/*
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Door")
+        {
+            WinMenu.SetActive(true);
+        }    
+    }*/
 }
 
 
