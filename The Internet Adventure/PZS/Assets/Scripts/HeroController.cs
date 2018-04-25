@@ -16,6 +16,8 @@ public class HeroController : MonoBehaviour {
     public bool canStick;
     public Vector2 onDownPosition;
     public Vector2 deltaPosition;
+
+    private float verticalDir;
    /* private GameObject WinMenu;
     private GameObject CanvasWin;*/
 
@@ -45,6 +47,9 @@ public class HeroController : MonoBehaviour {
 
         float horizontalDir = Input.GetAxis("Horizontal");
         anim.SetFloat("horizontalDir", Mathf.Abs(horizontalDir));
+        verticalDir = rbody.velocity.y;
+        anim.SetFloat("verticalDir", Mathf.Abs(verticalDir));
+        
 
         if(anim.GetCurrentAnimatorStateInfo(0).IsName("obstacleContact"))
         {
@@ -92,6 +97,8 @@ public class HeroController : MonoBehaviour {
     
     private void Update()
     {
+        anim.SetBool("groundCheck", grounded);
+
         if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 1)
         {
             GetComponent<Rigidbody2D>().isKinematic = false;
