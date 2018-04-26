@@ -13,9 +13,10 @@ public class Timer : MonoBehaviour {
 	void Start () {
         time = 0.0f;
         InvokeRepeating("TimeCount", 0f , 0.1f );
+       // PlayerPrefs.SetFloat("recordTime", time);
 
         if (PlayerPrefs.HasKey("recordTime"))
-             recordTime.text = PlayerPrefs.GetFloat("recordTime") + "s";
+            recordTime.text = PlayerPrefs.GetFloat("recordTime").ToString("F2") + "s";
 
     }
 
@@ -27,17 +28,19 @@ public class Timer : MonoBehaviour {
 
     public void CompareTimes()
     {
+        CancelInvoke("TimeCount");
         if (PlayerPrefs.HasKey("recordTime"))
         {
-            CancelInvoke("TimeCount");
             if (time < PlayerPrefs.GetFloat("recordTime"))
             {
+                recordTime.text = time.ToString("F2") + "s";
                 PlayerPrefs.SetFloat("recordTime", time);
             }
         }
-        else
+        if (PlayerPrefs.GetFloat("recordTime") < 0.1)
         {
             PlayerPrefs.SetFloat("recordTime", time);
+            recordTime.text = time.ToString("F2") + "s";
         }
     }
 
