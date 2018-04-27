@@ -11,7 +11,7 @@ public class GroundGenerator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        InvokeRepeating("GenerateNewGround", 0.9f, 2);
+        InvokeRepeating("GenerateNewGround", 1.5f, 1.4f);
 	}
 	
 	void GenerateNewGround () {
