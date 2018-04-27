@@ -7,7 +7,7 @@ public class CounterController : MonoBehaviour
 {
 
     int numberOfCoin;
-    Text counterView;
+    public Text counterView;
 
     // Use this for initialization
     void Start()
