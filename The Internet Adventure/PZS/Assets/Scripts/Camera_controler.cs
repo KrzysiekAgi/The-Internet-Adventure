@@ -29,7 +29,7 @@ public class Camera_controler : MonoBehaviour {
         currentTime += Time.deltaTime;
         if (currentTime < timeout) return;
 
-        float diff = hc.transform.position.y-(transform.position.y + player_pivot);
+        float diff = hc.transform.position.y - (transform.position.y + player_pivot);
         if (diff < -normal_speed_range)
         {
             extraSpeed = diff * under_pivot_mult;
@@ -42,8 +42,12 @@ public class Camera_controler : MonoBehaviour {
         {
             extraSpeed = 0;
         }
-        float totalSpeed = speed +extraSpeed;
-        if (totalSpeed < speed/2) totalSpeed = speed/2;
-        transform.position = new Vector3(transform.position.x, transform.position.y + Time.deltaTime * totalSpeed,transform.position.z);
-	}
+        float totalSpeed = speed + extraSpeed;
+        if (totalSpeed < speed / 2) totalSpeed = speed / 2;
+        if (Camera.main.gameObject.transform.position.y < 21.5)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y + Time.deltaTime * totalSpeed, transform.position.z);
+
+        }
+    }
 }
