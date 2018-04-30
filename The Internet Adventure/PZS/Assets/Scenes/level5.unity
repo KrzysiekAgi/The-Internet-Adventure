@@ -2552,6 +2552,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114588398525749746, guid: aa0ee32b7182c4946a2d1fc05c34577e,
+        type: 2}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 2030404732}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa0ee32b7182c4946a2d1fc05c34577e, type: 2}
   m_IsPrefabParent: 0
@@ -7609,9 +7614,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114053325464441440, guid: 4348adb0ba2909e4aa18817d538ac160,
+        type: 2}
+      propertyPath: newLevelName
+      value: level6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4348adb0ba2909e4aa18817d538ac160, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2030404732 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1349953087014534, guid: 4348adb0ba2909e4aa18817d538ac160,
+    type: 2}
+  m_PrefabInternal: {fileID: 2030404731}
 --- !u!1 &2037189569
 GameObject:
   m_ObjectHideFlags: 0
