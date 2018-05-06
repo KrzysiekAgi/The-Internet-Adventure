@@ -107,13 +107,12 @@ public class HeroController : MonoBehaviour {
             StartCoroutine(Stick());
         }
 
-
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && jumpCounter < 1)
         {
             onDownPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && jumpCounter < 1)
         {
             float x = 0;
             float y = 0;
@@ -127,6 +126,7 @@ public class HeroController : MonoBehaviour {
 
             deltaPosition = new Vector2(x, y);
             Jump = true;
+            jumpCounter++;
         }
     }
 
