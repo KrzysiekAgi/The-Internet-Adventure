@@ -383,6 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7287b8d004304643b08f26525a9b9f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  counterView: {fileID: 0}
 --- !u!1 &272652566
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveUnitsPerSecond:
-    value: {x: 0, y: -1.5, z: 0}
+    value: {x: 0, y: 0, z: 0}
     space: 1
   rotateDegreesPerSecond:
     value: {x: 0, y: 0, z: 0}
