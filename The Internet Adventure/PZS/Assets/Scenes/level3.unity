@@ -1359,6 +1359,11 @@ Prefab:
       propertyPath: newLevelName
       value: level4
       objectReference: {fileID: 0}
+    - target: {fileID: 114053325464441440, guid: 4348adb0ba2909e4aa18817d538ac160,
+        type: 2}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 290145839}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4348adb0ba2909e4aa18817d538ac160, type: 2}
   m_IsPrefabParent: 0
@@ -6629,7 +6634,7 @@ Prefab:
     - target: {fileID: 114542044053810516, guid: 1144362d26344644aa11a54086699c73,
         type: 2}
       propertyPath: newLevelName
-      value: level3
+      value: level4
       objectReference: {fileID: 0}
     - target: {fileID: 1796707654569066, guid: 1144362d26344644aa11a54086699c73, type: 2}
       propertyPath: m_IsActive
