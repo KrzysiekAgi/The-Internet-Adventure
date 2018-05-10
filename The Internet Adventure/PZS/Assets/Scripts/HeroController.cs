@@ -17,6 +17,9 @@ public class HeroController : MonoBehaviour {
     public Vector2 onDownPosition;
     public Vector2 deltaPosition;
 
+    public int touchCount;
+    Touch fingerOne;
+
     private float verticalDir;
    /* private GameObject WinMenu;
     private GameObject CanvasWin;*/
@@ -40,6 +43,8 @@ public class HeroController : MonoBehaviour {
         canStick = true;
         started = false;
         Camera_controler.setHeroController(this);
+
+        
     }
 
     // Update is called once per frame
@@ -51,44 +56,39 @@ public class HeroController : MonoBehaviour {
         anim.SetFloat("verticalDir", Mathf.Abs(verticalDir));
         
 
-        if(anim.GetCurrentAnimatorStateInfo(0).IsName("obstacleContact"))
+ /*       if(anim.GetCurrentAnimatorStateInfo(0).IsName("obstacleContact"))
         {
             rbody.velocity = Vector2.zero;
             return;
         }
 
         rbody.velocity = new Vector2(horizontalDir * hspeed, rbody.velocity.y);
+*/
 
-
-        /*if (rbody.velocity.x < 0)
+        if (rbody.velocity.x < 0)
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         if (rbody.velocity.x > 0)
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
-        }*/
+        }
 
         if (rbody.velocity.x < 0) transform.localScale = new Vector3(-1f, 1f, 1f);
-        if (horizontalDir > 0) transform.localScale = new Vector3(1f, 1f, 1f);
+        //if (horizontalDir > 0) transform.localScale = new Vector3(1f, 1f, 1f);
 
 
         if (Jump)
         {
             anim.SetTrigger("jump");
             Jump = false;
-            started = true;
-            //if (deltaPosition.x > 5)
-            //    deltaPosition.x = 5;
-            //if (deltaPosition.y > 10)
-            //    deltaPosition.y = 10;
+//            if (deltaPosition.x > 5)
+ //               deltaPosition.x = 5;
+//            if (deltaPosition.y > 10)
+ //               deltaPosition.y = 10;
 
-            //rbody.velocity = deltaPosition;
-
-
-            rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
-
-
+            rbody.velocity = deltaPosition;
+            //rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
             //rbody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
 
@@ -99,26 +99,43 @@ public class HeroController : MonoBehaviour {
     {
         anim.SetBool("groundCheck", grounded);
 
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 1)
+
+        /*
+                if (Input.GetMouseButtonDown(0))
+                {
+                    onDownPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+                }
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    float x = 0;
+                    float y = 0;
+                    x = (Input.mousePosition.x - onDownPosition.x) / 20;
+                    y = (Input.mousePosition.y - onDownPosition.y) / 10;
+
+                    if (x > 5) x = 5;
+                    if (x < -5) x = -5;
+                    if (y > 10) y = 10;
+                    if (y < -10) y = -10;
+
+                    deltaPosition = new Vector2(x, y);
+                    Jump = true;
+                }
+        */
+        touchCount = Input.touchCount;
+
+        if (0 < Input.touchCount && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            GetComponent<Rigidbody2D>().isKinematic = false;
-            Jump = true;
-            jumpCounter++;
-            StartCoroutine(Stick());
+
+            onDownPosition = new Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y);
+      
+           
         }
-
-
-        if (Input.GetMouseButtonDown(0))
+        if (0< Input.touchCount && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
-            onDownPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            float x = 0;
-            float y = 0;
-            x = (Input.mousePosition.x - onDownPosition.x) / 20;
-            y = (Input.mousePosition.y - onDownPosition.y) / 10;
+            float x = 0, y = 0;
+            x = (Input.GetTouch(0).position.x - onDownPosition.x) / 20;
+            y = (Input.GetTouch(0).position.y - onDownPosition.y) / 10;
 
             if (x > 5) x = 5;
             if (x < -5) x = -5;
