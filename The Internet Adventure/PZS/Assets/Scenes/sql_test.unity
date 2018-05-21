@@ -153,10 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e74fa65b1218eb4c9fd0aaddb0c9d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  host: 
-  database: 
-  user: 
-  password: 
+  host: internetadventure.mysql.database.azure.com
+  database: baza
+  user: myadmin@internetadventure
+  password: TrudneHaslo.2018
   pooling: 1
 --- !u!1 &714037298
 GameObject:

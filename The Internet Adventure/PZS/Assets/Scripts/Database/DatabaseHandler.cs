@@ -24,14 +24,16 @@ public class DatabaseHandler : MonoBehaviour {
     {
         DontDestroyOnLoad(this.gameObject);
 
-        connectionString = "Server=" + host + "Database=" + database + "User=" + user + "Password=" + password + "Polling=";
+        connectionString = "Database=" + database + ";Data Source=" + host + ";User Id=" + user + ";Password=" + password + ";";
+
+        /*connectionString = "Server=" + host + "Database=" + database + "User=" + user + "Password=" + password + "Polling=";
         if(pooling)
         {
             connectionString += "true;";
         } else
         {
             connectionString += "false;";
-        }
+        }*/
 
         try
         {
