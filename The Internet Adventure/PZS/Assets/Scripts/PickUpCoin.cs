@@ -6,6 +6,7 @@ public class PickUpCoin : MonoBehaviour
 {
 
     CounterController counterController;
+    public AudioClip clip;
 
     // Use this for initialization
     void Start()
@@ -19,6 +20,7 @@ public class PickUpCoin : MonoBehaviour
         if (other.gameObject.name == "Hero")
         {
             Destroy(this.gameObject);
+            AudioSource.PlayClipAtPoint(clip, transform.position);
             counterController.IncrementCounter();
         }
     }
