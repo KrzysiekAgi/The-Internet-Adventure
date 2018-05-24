@@ -698,8 +698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45384907c13a4cd40891217987b4daa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hspeed: 7
-  jumpForce: 8
+  hspeed: 8
+  jumpForce: 10
   canStick: 0
   onDownPosition: {x: 0, y: 0}
   deltaPosition: {x: 0, y: 0}
