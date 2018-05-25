@@ -1633,6 +1633,11 @@ Prefab:
       propertyPath: m_Name
       value: Spike (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 61508742391381536, guid: c000bc7112cd8b94fbb80346a72de2a0,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c000bc7112cd8b94fbb80346a72de2a0, type: 2}
   m_IsPrefabParent: 0
@@ -7662,6 +7667,16 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 270
       objectReference: {fileID: 0}
+    - target: {fileID: 114185840400479304, guid: c000bc7112cd8b94fbb80346a72de2a0,
+        type: 2}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f53ad2d958c048e5a8e403a20d21df0, type: 3}
+    - target: {fileID: 61508742391381536, guid: c000bc7112cd8b94fbb80346a72de2a0,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c000bc7112cd8b94fbb80346a72de2a0, type: 2}
   m_IsPrefabParent: 0
@@ -8047,6 +8062,11 @@ Prefab:
       propertyPath: m_Name
       value: Spike (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 61508742391381536, guid: c000bc7112cd8b94fbb80346a72de2a0,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c000bc7112cd8b94fbb80346a72de2a0, type: 2}
   m_IsPrefabParent: 0
@@ -8367,6 +8387,11 @@ Prefab:
     - target: {fileID: 1761513212069722, guid: c000bc7112cd8b94fbb80346a72de2a0, type: 2}
       propertyPath: m_Name
       value: Spike (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 61508742391381536, guid: c000bc7112cd8b94fbb80346a72de2a0,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c000bc7112cd8b94fbb80346a72de2a0, type: 2}
@@ -9348,6 +9373,11 @@ Prefab:
     - target: {fileID: 1761513212069722, guid: c000bc7112cd8b94fbb80346a72de2a0, type: 2}
       propertyPath: m_Name
       value: Spike (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 61508742391381536, guid: c000bc7112cd8b94fbb80346a72de2a0,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c000bc7112cd8b94fbb80346a72de2a0, type: 2}
