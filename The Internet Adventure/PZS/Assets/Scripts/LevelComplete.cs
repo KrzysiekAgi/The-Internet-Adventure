@@ -10,6 +10,7 @@ public class LevelComplete : MonoBehaviour
     private GameObject WinMenu;
     private GameObject CanvasWin;
     public GameObject Player;
+    public AudioClip clip;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class LevelComplete : MonoBehaviour
     {
 
         Player.SendMessage("CompareTimes");
+        AudioSource.PlayClipAtPoint(clip, transform.position);
         WinMenu.SetActive(true);
         Time.timeScale = 0f; //freeze
 
