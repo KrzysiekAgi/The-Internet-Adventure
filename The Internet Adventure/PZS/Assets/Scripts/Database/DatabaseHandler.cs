@@ -19,6 +19,10 @@ public class DatabaseHandler : MonoBehaviour {
     private MySqlCommand cmd = null;
     private MySqlDataReader reader = null;
 
+    public string[,] rank;
+
+    
+
     private MD5 _md5Hash;
 
     private void Awake()
@@ -43,6 +47,9 @@ public class DatabaseHandler : MonoBehaviour {
         //UpdateLastGame("10000", "5.5", "200", "0", "KRzych");
 
         //SceneManager.LoadScene("login_menu");
+        //rank = new String[10, 10];
+        
+        //rank = ViewRanking();
 
     }
 
@@ -131,9 +138,10 @@ public class DatabaseHandler : MonoBehaviour {
     }
 
 
-    public string[][] ViewRanking ()
+    public string[,] ViewRanking ()
     {
         Connect();
+        string[,] ranking = new String[10,10];
         string rankingString = "Select * from RANKING;";
         MySqlDataReader reader;
         MySqlCommand cmdRank = con.CreateCommand();
@@ -142,9 +150,16 @@ public class DatabaseHandler : MonoBehaviour {
         reader = cmdRank.ExecuteReader();
         try
         {
-            while (reader.Read())
+            int id = 0;
+            while (reader.Read() || id>9)
             {
-                Debug.Log(reader.GetString(0));
+
+                for (int i = 0; i < 8; i++)
+                {
+                    ranking[id,i] = reader.GetString(i);
+                    //Debug.Log(ranking[id,i]);
+                }
+            id++;
             }
         }
         finally { }
@@ -153,7 +168,7 @@ public class DatabaseHandler : MonoBehaviour {
         con.Close();
     
 
-        return null;
+        return ranking;
     }
 
     public void DeleteAccount(string login)
