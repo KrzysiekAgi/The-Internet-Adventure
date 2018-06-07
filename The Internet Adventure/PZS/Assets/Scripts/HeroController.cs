@@ -140,6 +140,8 @@ public class HeroController : MonoBehaviour {
 
     public void RestartLevel()
     {
+        int score;
+      //  GameObject.Find("_mysql").GetComponent<DatabaseHandler>().UpdateLastGame()
         SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
     }
 /*

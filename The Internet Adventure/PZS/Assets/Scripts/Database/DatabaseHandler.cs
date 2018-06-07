@@ -125,10 +125,10 @@ public class DatabaseHandler : MonoBehaviour {
         return true;
     }
 
-    public void UpdateLastGame (string score, string time, string gold, string number_of_memes, string login)
+    public void UpdateLastGame (string score, string time, string gold, string number_of_memes, string login, string level)
     {
         Connect();
-        string statisticString = "Update LAST_GAME L, USER U Set L.score ="+score+", L.time="+time+",L.gold ="+gold+", L.number_of_mems=0 where L.user_id = U.id and U.login like '"+login+"';";
+        string statisticString = "Update LAST_GAME L, USER U Set L.level ="+level+", L.score ="+score+", L.time="+time+",L.gold ="+gold+", L.number_of_mems=0 where L.user_id = U.id and U.login like '"+login+"';";
         MySqlCommand cmdUpdate = con.CreateCommand();
         cmdUpdate.CommandType = CommandType.Text;
         cmdUpdate.CommandText = statisticString;
