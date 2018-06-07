@@ -1668,6 +1668,7 @@ GameObject:
   - component: {fileID: 290145845}
   - component: {fileID: 290145848}
   - component: {fileID: 290145846}
+  - component: {fileID: 290145847}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Player
@@ -1820,13 +1821,27 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 290145839}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 844c6d98fb6debd4d99e61b57243db64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentTime: {fileID: 1700111564}
   recordTime: {fileID: 1880945897}
+  time: 0
+--- !u!114 &290145847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 290145839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b7c0b431f77784e8edd14f7c6fb02d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTime: {fileID: 1700111564}
+  recordTime2: {fileID: 1880945897}
   time: 0
 --- !u!114 &290145848
 MonoBehaviour:
