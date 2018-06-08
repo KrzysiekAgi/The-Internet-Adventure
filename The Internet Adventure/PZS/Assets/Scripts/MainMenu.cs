@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +9,8 @@ public class MainMenu : MonoBehaviour {
 
 	public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        transform.GetChild(2).gameObject.SetActive(false);
+        transform.GetChild(3).gameObject.SetActive(true);
     }
 
     public void QuitGame()
@@ -43,6 +45,32 @@ public class MainMenu : MonoBehaviour {
     {
         transform.GetChild(2).gameObject.SetActive(true);
         transform.GetChild(1).gameObject.SetActive(false);
+    }
+
+    public void BackPlay()
+    {
+        transform.GetChild(2).gameObject.SetActive(true);
+        transform.GetChild(3).gameObject.SetActive(false);
+    }
+
+    public void PlayEndless()
+    {
+        SceneManager.LoadScene("LevelChallenge");
+    }
+
+    public void PlayLevel()
+    {
+        int lvl;
+        try
+        {
+            lvl = Int32.Parse(GameObject.Find("SelectLevel").GetComponent<TMP_InputField>().text);
+            if (lvl > 0 && lvl < 13) SceneManager.LoadScene("level" + lvl);
+            else GameObject.Find("SelectLevel").GetComponent<TMP_InputField>().text = "Wrong number";
+        } catch(FormatException)
+        {
+            GameObject.Find("SelectLevel").GetComponent<TMP_InputField>().text = "Only number!";
+        }
+
     }
 
 }
