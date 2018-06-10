@@ -16,10 +16,16 @@ public class HeroController : MonoBehaviour {
     public bool canStick;
     public Vector2 onDownPosition;
     public Vector2 deltaPosition;
+    public Vector2 velocityTEST;
+    public Vector2 onUpPosition;
 
     private float verticalDir;
-   /* private GameObject WinMenu;
-    private GameObject CanvasWin;*/
+
+    Touch fingerOne;
+    
+
+    /* private GameObject WinMenu;
+     private GameObject CanvasWin;*/
 
     public bool ifStarted()
     {
@@ -50,24 +56,24 @@ public class HeroController : MonoBehaviour {
         verticalDir = rbody.velocity.y;
         anim.SetFloat("verticalDir", Mathf.Abs(verticalDir));
         
-
+        /*
         if(anim.GetCurrentAnimatorStateInfo(0).IsName("obstacleContact"))
         {
             rbody.velocity = Vector2.zero;
             return;
         }
+        */
+        //rbody.velocity = new Vector2(horizontalDir * hspeed, rbody.velocity.y);
 
-        rbody.velocity = new Vector2(horizontalDir * hspeed, rbody.velocity.y);
 
-
-        /*if (rbody.velocity.x < 0)
+        if (rbody.velocity.x < 0)
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         if (rbody.velocity.x > 0)
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
-        }*/
+        }
 
         if (rbody.velocity.x < 0) transform.localScale = new Vector3(-1f, 1f, 1f);
         if (horizontalDir > 0) transform.localScale = new Vector3(1f, 1f, 1f);
@@ -77,18 +83,14 @@ public class HeroController : MonoBehaviour {
         {
             anim.SetTrigger("jump");
             Jump = false;
-            started = true;
-            //if (deltaPosition.x > 5)
-            //    deltaPosition.x = 5;
-            //if (deltaPosition.y > 10)
-            //    deltaPosition.y = 10;
-
-            //rbody.velocity = deltaPosition;
-
-
-            rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
-
-
+            /*
+            if (deltaPosition.x > 5)
+                deltaPosition.x = 5;
+            if (deltaPosition.y > 10)
+                deltaPosition.y = 10;
+            */
+            rbody.velocity = deltaPosition;
+            //rbody.velocity = new Vector2(rbody.velocity.x, jumpForce);
             //rbody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
 
@@ -99,19 +101,21 @@ public class HeroController : MonoBehaviour {
     {
         anim.SetBool("groundCheck", grounded);
 
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 1)
+        /*if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < 1)
         {
             GetComponent<Rigidbody2D>().isKinematic = false;
             Jump = true;
             jumpCounter++;
             StartCoroutine(Stick());
-        }
+        }*/
 
+        velocityTEST = rbody.velocity;
+        /*
         if (Input.GetMouseButtonDown(0) && jumpCounter < 1)
         {
             onDownPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         }
-
+        
         if (Input.GetMouseButtonUp(0) && jumpCounter < 1)
         {
             float x = 0;
@@ -127,6 +131,36 @@ public class HeroController : MonoBehaviour {
             deltaPosition = new Vector2(x, y);
             Jump = true;
             jumpCounter++;
+        }*/
+        
+        if (Input.touchCount > 0)// && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            fingerOne = Input.GetTouch(0);
+            float bX=0;
+            float bY=0;
+
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                bX = fingerOne.position.x;
+                bY = fingerOne.position.y;
+                onDownPosition = new Vector2(bX, bY);
+            }
+
+            if (fingerOne.phase == TouchPhase.Ended)
+                {
+                    float x = 0, y = 0;
+                    x = (fingerOne.position.x - onDownPosition.x)/20;
+                    y = (fingerOne.position.y - onDownPosition.y)/20;
+                    onUpPosition = new Vector2(fingerOne.position.x, fingerOne.position.y);
+                    //if (x > 5) x = 5;
+                    //if (x < -5) x = -5;
+                   // if (y > 10) y = 10;
+                    //if (y < -10) y = -10;
+
+                    deltaPosition = new Vector2(x, y);
+                    Jump = true;
+
+                }
         }
     }
 
