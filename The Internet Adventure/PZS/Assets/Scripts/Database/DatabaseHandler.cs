@@ -8,6 +8,8 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Net;
+using System.IO;
 
 public class DatabaseHandler : MonoBehaviour {
 
@@ -31,6 +33,9 @@ public class DatabaseHandler : MonoBehaviour {
 
         connectionString = "Database=" + database + ";Data Source=" + host + ";User Id=" + user + ";Password=" + password + ";";
 
+        Connect();
+        con.Close();
+
         /*connectionString = "Server=" + host + "Database=" + database + "User=" + user + "Password=" + password + "Polling=";
         if(pooling)
         {
@@ -51,6 +56,8 @@ public class DatabaseHandler : MonoBehaviour {
         
         //rank = ViewRanking();
 
+        runPHPTest("aaa");
+
     }
 
     private void OnApplicationQuit()
@@ -64,6 +71,37 @@ public class DatabaseHandler : MonoBehaviour {
             }
             con.Dispose();
         }
+    }
+
+    public void runPHPTest(string name)
+    {
+        try
+            {
+                string postData = String.Format("NAME={0}", name);
+                byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+                Debug.Log("Start try in PHP");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://internetadventure.cba.pl/phpscripts/zapytaniePolaczenie.php");
+                request.Method = "POST";
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = byteArray.Length;
+                using (Stream webpageStream = request.GetRequestStream())
+                {
+                    webpageStream.Write(byteArray, 0, byteArray.Length);
+                }
+
+                using (HttpWebResponse webResponse = (HttpWebResponse)request.GetResponse())
+                {
+                    using (StreamReader reader = new StreamReader(webResponse.GetResponseStream()))
+                    {
+                        Debug.Log(reader.ReadToEnd());
+                    }
+                }
+            
+            }
+            catch (Exception Except)
+            {
+                Debug.Log(Except.StackTrace);
+            }
     }
 
     public string GetConnectionState()
