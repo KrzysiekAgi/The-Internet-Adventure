@@ -142,11 +142,7 @@ public class DatabaseHandler : MonoBehaviour {
     {
         Connect();
         string[,] ranking = new String[10,10];
-<<<<<<< HEAD
         string rankingString = "Select * from USER;";
-=======
-        string rankingString = "Select * from RANKING;";
->>>>>>> master
         MySqlDataReader reader;
         MySqlCommand cmdRank = con.CreateCommand();
         cmdRank.CommandType = CommandType.Text;
@@ -155,21 +151,13 @@ public class DatabaseHandler : MonoBehaviour {
         try
         {
             int id = 0;
-<<<<<<< HEAD
             while (reader.Read() || id<2)
-=======
-            while (reader.Read() || id>9)
->>>>>>> master
             {
 
                 for (int i = 0; i < 8; i++)
                 {
                     ranking[id,i] = reader.GetString(i);
-<<<<<<< HEAD
                     //Debug.Log(reader.GetString(i));
-=======
-                    //Debug.Log(ranking[id,i]);
->>>>>>> master
                 }
             id++;
             }
