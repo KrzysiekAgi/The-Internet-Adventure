@@ -84,8 +84,13 @@ public class LoginMenu : MonoBehaviour {
     {
         string login, password;
         bool isLogged = false;
+<<<<<<< HEAD
         login = GameObject.Find("LoginUsername").gameObject.GetComponent<InputField>().text;
         password = GameObject.Find("LoginPassword").gameObject.GetComponent<InputField>().text;
+=======
+        login = transform.GetChild(0).Find("LoginUsername").GetChild(2).gameObject.GetComponent<Text>().text;
+        password = transform.GetChild(0).Find("LoginPassword").gameObject.GetComponent<InputField>().text;
+>>>>>>> master
 
         isLogged = GameObject.Find("_mysql").gameObject.GetComponent<DatabaseHandler>().Login(login, password);
 
