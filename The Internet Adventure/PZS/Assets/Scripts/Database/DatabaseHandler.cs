@@ -52,11 +52,22 @@ public class DatabaseHandler : MonoBehaviour {
         //UpdateLastGame("10000", "5.5", "200", "0", "KRzych");
 
         //SceneManager.LoadScene("login_menu");
-        //rank = new String[10, 10];
+        rank=null;
         
-        //rank = ViewRanking();
+   
+        rank = ViewRanking();
+        Debug.Log("I'm ready! "+rank.Length);
+        for (int i = 0; i < 10; i++)
+        {
+            String s="";
+            for (int j = 0; j < 8; j++)
+            {
+                s += rank[i, j] + " ";
+            }
+            Debug.Log(s);
+        }
 
-        runPHPTest("aaa");
+        //runPHPTest("ddd");
 
     }
 
@@ -93,13 +104,16 @@ public class DatabaseHandler : MonoBehaviour {
                 {
                     using (StreamReader reader = new StreamReader(webResponse.GetResponseStream()))
                     {
+                        Debug.Log("I read this:");
                         Debug.Log(reader.ReadToEnd());
+
                     }
                 }
             
             }
             catch (Exception Except)
             {
+                Debug.Log("Exception");
                 Debug.Log(Except.StackTrace);
             }
     }
@@ -178,33 +192,53 @@ public class DatabaseHandler : MonoBehaviour {
 
     public string[,] ViewRanking ()
     {
-        Connect();
-        string[,] ranking = new String[10,10];
-        string rankingString = "Select * from RANKING;";
-        MySqlDataReader reader;
-        MySqlCommand cmdRank = con.CreateCommand();
-        cmdRank.CommandType = CommandType.Text;
-        cmdRank.CommandText = rankingString;
-        reader = cmdRank.ExecuteReader();
+        string[,] ranking = new string[10,8];
         try
         {
-            int id = 0;
-            while (reader.Read() || id>9)
+            string postData = String.Format("NAME={0}", name);
+            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+            Debug.Log("Start try in PHP");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://internetadventure.cba.pl/phpscripts/ranking.php");
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = byteArray.Length;
+            using (Stream webpageStream = request.GetRequestStream())
             {
-
-                for (int i = 0; i < 8; i++)
-                {
-                    ranking[id,i] = reader.GetString(i);
-                    //Debug.Log(ranking[id,i]);
-                }
-            id++;
+                webpageStream.Write(byteArray, 0, byteArray.Length);
             }
+
+            using (HttpWebResponse webResponse = (HttpWebResponse)request.GetResponse())
+            {
+                using (StreamReader reader = new StreamReader(webResponse.GetResponseStream()))
+                {
+                    Debug.Log("I read this:");
+                    string result = reader.ReadToEnd(); 
+                    Debug.Log(result);
+                    int begin = result.IndexOf("[INTERNETMASTERBEGIN]");
+                    int end = result.IndexOf("[INTERNETMASTEREND]");
+                    string datapack = result.Substring(begin+21, (end-begin-21));
+                    Debug.Log(datapack);
+                    string[] rows = datapack.Split(new[] { "[ROWBEGIN]" }, StringSplitOptions.None); 
+                    for (int i = 1; i < rows.Length && i<11; i++)
+                    {
+                        string[] slots = rows[i].Split(new[] { ";" }, StringSplitOptions.None);
+                        Debug.Log("Slot length: "+slots.Length);
+                        for (int j = 1; j < 9; j++)
+                        {
+                            Debug.Log(slots[j]);
+                            ranking[i-1, j-1] = slots[j];
+                        }
+                    }
+                }
+            }
+
         }
-        finally { }
-        
-        reader.Close();
-        con.Close();
-    
+        catch (Exception Except)
+        {
+            Debug.Log("Exception");
+            Debug.Log(Except.ToString());
+            Debug.Log(Except.StackTrace);
+        }
 
         return ranking;
     }
