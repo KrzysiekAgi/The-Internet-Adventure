@@ -44,10 +44,11 @@ public class Camera_controler : MonoBehaviour {
         }
         float totalSpeed = speed + extraSpeed;
         if (totalSpeed < speed / 2) totalSpeed = speed / 2;
-        if (Camera.main.gameObject.transform.position.y < 21.5)
+       /* if (Camera.main.gameObject.transform.position.y < 21.5)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + Time.deltaTime * totalSpeed, transform.position.z);
 
-        }
+        }*/
+          transform.position = new Vector3(transform.position.x, transform.position.y + Time.deltaTime * totalSpeed, transform.position.z);
     }
 }

@@ -18,7 +18,6 @@ public class GroundGenerator : MonoBehaviour {
 
         do
         {
-
             newX = Random.Range(-6.5f, 4.5f);
 
         } while (newX > maxStep + PreviousGroundY && newX < 2 * maxStep + PreviousGroundY);

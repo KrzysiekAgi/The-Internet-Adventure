@@ -19,7 +19,7 @@ public class WallCheck : MonoBehaviour {
     {
         if (rBody.GetComponent<HeroController>().canStick == true && collision.tag == "Platform")
         {
-            rBody.velocity = new Vector2(0F, 1F);
+            rBody.velocity = new Vector2(0F, 0F);
             rBody.GetComponent<HeroController>().jumpCounter = 0;
         }
     }
