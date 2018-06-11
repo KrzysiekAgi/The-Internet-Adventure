@@ -151,21 +151,18 @@ public class DatabaseHandler : MonoBehaviour {
         try
         {
             int id = 0;
-            while (reader.Read() && id<9)
+            while (reader.Read() || id>9)
             {
 
                 for (int i = 0; i < 8; i++)
                 {
                     ranking[id,i] = reader.GetString(i);
-                    //Debug.Log(reader.GetString(i));
+                    //Debug.Log(ranking[id,i]);
                 }
             id++;
             }
         }
-        finally {
-            reader.Close();
-            con.Close();
-        }
+        finally { }
         
         reader.Close();
         con.Close();
