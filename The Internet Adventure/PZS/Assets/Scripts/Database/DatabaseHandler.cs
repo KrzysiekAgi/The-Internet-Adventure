@@ -142,7 +142,7 @@ public class DatabaseHandler : MonoBehaviour {
     {
         Connect();
         string[,] ranking = new String[10,10];
-        string rankingString = "Select * from USER;";
+        string rankingString = "Select * from RANKING;";
         MySqlDataReader reader;
         MySqlCommand cmdRank = con.CreateCommand();
         cmdRank.CommandType = CommandType.Text;

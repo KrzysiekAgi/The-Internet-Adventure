@@ -83,6 +83,7 @@ public class HeroController : MonoBehaviour {
         {
             anim.SetTrigger("jump");
             Jump = false;
+            started = true;
             /*
             if (deltaPosition.x > 5)
                 deltaPosition.x = 5;
@@ -149,8 +150,8 @@ public class HeroController : MonoBehaviour {
             if (fingerOne.phase == TouchPhase.Ended)
                 {
                     float x = 0, y = 0;
-                    x = (fingerOne.position.x - onDownPosition.x)/20;
-                    y = (fingerOne.position.y - onDownPosition.y)/20;
+                    x = (fingerOne.position.x - onDownPosition.x)/40;
+                    y = (fingerOne.position.y - onDownPosition.y)/40;
                     onUpPosition = new Vector2(fingerOne.position.x, fingerOne.position.y);
                     //if (x > 5) x = 5;
                     //if (x < -5) x = -5;
