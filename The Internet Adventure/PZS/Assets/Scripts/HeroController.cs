@@ -79,11 +79,13 @@ public class HeroController : MonoBehaviour {
         if (horizontalDir > 0) transform.localScale = new Vector3(1f, 1f, 1f);
 
 
-        if (Jump)
+        if (Jump && jumpCounter<2)
         {
             anim.SetTrigger("jump");
             Jump = false;
+            jumpCounter++;
             started = true;
+            StartCoroutine(Stick());
             /*
             if (deltaPosition.x > 5)
                 deltaPosition.x = 5;
@@ -150,13 +152,13 @@ public class HeroController : MonoBehaviour {
             if (fingerOne.phase == TouchPhase.Ended)
                 {
                     float x = 0, y = 0;
-                    x = (fingerOne.position.x - onDownPosition.x)/40;
-                    y = (fingerOne.position.y - onDownPosition.y)/40;
+                    x = (fingerOne.position.x - onDownPosition.x)*20/Screen.width;
+                    y = (fingerOne.position.y - onDownPosition.y)*20/Screen.height;
                     onUpPosition = new Vector2(fingerOne.position.x, fingerOne.position.y);
-                    //if (x > 5) x = 5;
-                    //if (x < -5) x = -5;
-                   // if (y > 10) y = 10;
-                    //if (y < -10) y = -10;
+                    if (x > 5) x = 5;
+                    if (x < -5) x = -5;
+                    if (y > 10) y = 10;
+                    if (y < -10) y = -10;
 
                     deltaPosition = new Vector2(x, y);
                     Jump = true;

@@ -1948,6 +1948,8 @@ MonoBehaviour:
   canStick: 0
   onDownPosition: {x: 0, y: 0}
   deltaPosition: {x: 0, y: 0}
+  velocityTEST: {x: 0, y: 0}
+  onUpPosition: {x: 0, y: 0}
 --- !u!50 &290145844
 Rigidbody2D:
   serializedVersion: 4
@@ -3073,7 +3075,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -6515,6 +6517,11 @@ Prefab:
         type: 2}
       propertyPath: newLevelName
       value: level6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114177181669930054, guid: 1144362d26344644aa11a54086699c73,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1144362d26344644aa11a54086699c73, type: 2}
