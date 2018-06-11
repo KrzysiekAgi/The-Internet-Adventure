@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -104,13 +105,14 @@ public class LoginMenu : MonoBehaviour {
     public void Register()
     {
         string login, password, secondpassword, email, sex, nick;
+        string pattern;
         bool registeredDone = false;
 
-        login = transform.GetChild(1).Find("RegisterLogin").GetChild(2).gameObject.GetComponent<Text>().text;
+        login = transform.GetChild(1).Find("RegisterLogin").gameObject.GetComponent<InputField>().text;
         password = transform.GetChild(1).Find("RegisterPassword").gameObject.GetComponent<InputField>().text;
         secondpassword = transform.GetChild(1).Find("RegisterSecondPassword").gameObject.GetComponent<InputField>().text;
-        email = transform.GetChild(1).Find("RegisterEmail").GetChild(2).gameObject.GetComponent<Text>().text;
-        nick = transform.GetChild(1).Find("RegisterNickname").GetChild(2).gameObject.GetComponent<Text>().text;
+        email = transform.GetChild(1).Find("RegisterEmail").gameObject.GetComponent<InputField>().text;
+        nick = transform.GetChild(1).Find("RegisterNickname").gameObject.GetComponent<InputField>().text;
 
         if (transform.GetChild(1).Find("RegisterDropdown").gameObject.GetComponent<Dropdown>().value == 0)
         {
@@ -124,6 +126,35 @@ public class LoginMenu : MonoBehaviour {
         if (login.Equals("") || password.Equals("") || secondpassword.Equals("") || email.Equals("") || nick.Equals(""))
         {
             transform.GetChild(1).Find("Error").gameObject.GetComponent<TextMeshProUGUI>().text = "All fields must be entered";
+            ClearInput();
+            return;
+        }
+
+        pattern = "^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
+        if(!Regex.IsMatch(login,pattern))
+        {
+            transform.GetChild(1).Find("Error").gameObject.GetComponent<TextMeshProUGUI>().text = "Login must be beetewen 4-20 characters (a-z,A-Z,0-9)";
+            ClearInput();
+            return;
+        }
+        pattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{5,}$";
+        if (!Regex.IsMatch(password, pattern))
+        {
+            transform.GetChild(1).Find("Error").gameObject.GetComponent<TextMeshProUGUI>().text = "Password must be at least 5 characters (one letter, one number)";
+            ClearInput();
+            return;
+        }
+        if(!IsValidEmail(email))
+        {
+            transform.GetChild(1).Find("Error").gameObject.GetComponent<TextMeshProUGUI>().text = "Email is not valid";
+            ClearInput();
+            return;
+        }
+        pattern = "^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
+        if (!Regex.IsMatch(login, pattern))
+        {
+            transform.GetChild(1).Find("Error").gameObject.GetComponent<TextMeshProUGUI>().text = "Nickname must be beetewen 4-20 characters (a-z,A-Z,0-9)";
+            ClearInput();
             return;
         }
 
@@ -153,6 +184,28 @@ public class LoginMenu : MonoBehaviour {
         transform.GetChild(1).Find("RegisterEmail").gameObject.GetComponent<InputField>().text = "";
         transform.GetChild(1).Find("RegisterNickname").gameObject.GetComponent<InputField>().text = "";
 
+    }
+
+    bool IsValidEmail(string email)
+    {
+        try
+        {
+            var addr = new System.Net.Mail.MailAddress(email);
+            return addr.Address == email;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    void ClearInput()
+    {
+        transform.GetChild(1).Find("RegisterLogin").gameObject.GetComponent<InputField>().text = "";
+        transform.GetChild(1).Find("RegisterPassword").gameObject.GetComponent<InputField>().text = "";
+        transform.GetChild(1).Find("RegisterSecondPassword").gameObject.GetComponent<InputField>().text = "";
+        transform.GetChild(1).Find("RegisterEmail").gameObject.GetComponent<InputField>().text = "";
+        transform.GetChild(1).Find("RegisterNickname").gameObject.GetComponent<InputField>().text = "";
     }
 
 }

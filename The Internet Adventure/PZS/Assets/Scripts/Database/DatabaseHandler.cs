@@ -151,7 +151,7 @@ public class DatabaseHandler : MonoBehaviour {
         try
         {
             int id = 0;
-            while (reader.Read() || id<2)
+            while (reader.Read() && id<9)
             {
 
                 for (int i = 0; i < 8; i++)
@@ -162,7 +162,10 @@ public class DatabaseHandler : MonoBehaviour {
             id++;
             }
         }
-        finally { }
+        finally {
+            reader.Close();
+            con.Close();
+        }
         
         reader.Close();
         con.Close();

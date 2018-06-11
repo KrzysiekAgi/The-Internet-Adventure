@@ -7,7 +7,17 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour {
 
-	public void PlayGame()
+    public bool isMute = false;
+
+    public void Mute()
+    {
+        isMute = !isMute;
+        AudioListener.volume = isMute ? 0 : 1;
+        if (isMute) GameObject.Find("mute").transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText("music");
+        else GameObject.Find("mute").transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText("mute");
+    }
+
+    public void PlayGame()
     {
         transform.GetChild(2).gameObject.SetActive(false);
         transform.GetChild(3).gameObject.SetActive(true);
