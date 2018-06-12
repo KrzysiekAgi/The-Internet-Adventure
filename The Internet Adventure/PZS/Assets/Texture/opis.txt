@@ -1,0 +1,19 @@
+level 3 - welcome.jpg
+
+level 4 - wieczur.jpg
+
+level 5 - no_idea.jpg
+
+level 6 - recursion.jpg
+
+level 7 - save.jpg
+
+level 8 - kolo.jpg
+
+level 9 - medal.jpg
+
+level 10 - pedro.jpg
+
+level 11 - ex.jpg
+
+level 12 - greg.jpg
